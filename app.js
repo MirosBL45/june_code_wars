@@ -76,7 +76,7 @@ console.log('####################----------------####################');
 
 
 console.log('4. assigment');
-console.log('Multiply two numbers! The arguments are passed as strings.');
+console.log('Multiply two numbers. The arguments are passed as strings.');
 
 function multiply(a, b) {
     if (a === '0' || b === '0') return '0';
@@ -100,4 +100,4 @@ function multiply(a, b) {
     return result.reverse().join('');
 }
 
-console.log(multiply("123456789", "987654321"));
+console.log(multiply("12346789", "987654321"));
