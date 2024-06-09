@@ -163,3 +163,38 @@ const device = {
 
 console.log(device.decode('What the hell'));
 console.log('####################----------------####################');
+
+console.log('7. assigment');
+console.log('Last digit of a huge number.');
+
+function lastDigit(list) {
+    if (list.length === 0) return 1;
+
+    function modExp(base, exponent, mod) {
+        if (mod === 1) return 0;
+        let result = 1;
+        base = base % mod;
+        while (exponent > 0) {
+            if (exponent % 2 === 1) {
+                result = (result * base) % mod;
+            }
+            exponent = Math.floor(exponent / 2);
+            base = (base * base) % mod;
+        }
+        return result;
+    }
+
+    let result = 1;
+    for (let i = list.length - 1; i >= 0; i--) {
+        if (result === 0) {
+            result = 1;
+        } else {
+            result = modExp(list[i], result, 4) || 4;
+        }
+    }
+
+    return Math.pow(list[0], result) % 10;
+}
+
+console.log(lastDigit([12, 30, 21]));
+console.log('####################----------------####################');
