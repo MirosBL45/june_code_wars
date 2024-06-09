@@ -76,7 +76,7 @@ console.log('####################----------------####################');
 
 
 console.log('4. assigment');
-console.log('Multiply two numbers! The arguments are passed as strings.');
+console.log('Multiply two numbers. The arguments are passed as strings.');
 
 function multiply(a, b) {
     if (a === '0' || b === '0') return '0';
