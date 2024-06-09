@@ -142,3 +142,24 @@ function parseInt(string) {
 
 console.log(parseInt("seven hundred eighty-three thousand nine hundred and nineteen"));
 console.log('####################----------------####################');
+
+
+console.log('6. assigment');
+console.log('Help the general decode secret enemy messages.');
+const device = {
+    decode: function (string) {
+        return string.split('').map(char => {
+            if (/[a-z]/.test(char)) {
+                return String.fromCharCode((char.charCodeAt(0) - 'a'.charCodeAt(0) - 1 + 26) % 26 + 'a'.charCodeAt(0));
+            } else if (/[A-Z]/.test(char)) {
+                return String.fromCharCode((char.charCodeAt(0) - 'A'.charCodeAt(0) - 1 + 26) % 26 + 'A'.charCodeAt(0));
+            } else {
+                return char;
+            }
+        }).join('');
+    }
+};
+
+
+console.log(device.decode('What the hell'));
+console.log('####################----------------####################');
