@@ -198,3 +198,90 @@ function lastDigit(list) {
 
 console.log(lastDigit([12, 30, 21]));
 console.log('####################----------------####################');
+
+
+
+console.log('8. assigment');
+console.log('Sudoku Solver.');
+
+function sudoku(puzzle) {
+    solveSudoku(puzzle);
+    return puzzle;
+}
+
+function solveSudoku(grid) {
+    const emptyPos = findEmptyPosition(grid);
+    if (!emptyPos) {
+        return true;
+    }
+    const [row, col] = emptyPos;
+
+    for (let num = 1; num <= 9; num++) {
+        if (isValidPlacement(grid, row, col, num)) {
+            grid[row][col] = num;
+
+            if (solveSudoku(grid)) {
+                return true;
+            }
+
+            grid[row][col] = 0;
+        }
+    }
+
+    return false;
+}
+
+function findEmptyPosition(grid) {
+    for (let row = 0; row < 9; row++) {
+        for (let col = 0; col < 9; col++) {
+            if (grid[row][col] === 0) {
+                return [row, col];
+            }
+        }
+    }
+    return null;
+}
+
+function isValidPlacement(grid, row, col, num) {
+    return !inRow(grid, row, num) &&
+        !inCol(grid, col, num) &&
+        !inBox(grid, row - (row % 3), col - (col % 3), num);
+}
+
+function inRow(grid, row, num) {
+    return grid[row].includes(num);
+}
+
+function inCol(grid, col, num) {
+    for (let row = 0; row < 9; row++) {
+        if (grid[row][col] === num) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function inBox(grid, startRow, startCol, num) {
+    for (let row = 0; row < 3; row++) {
+        for (let col = 0; col < 3; col++) {
+            if (grid[startRow + row][startCol + col] === num) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+var puzzle = [
+    [5, 3, 0, 0, 7, 0, 0, 0, 0],
+    [6, 0, 0, 1, 9, 5, 0, 0, 0],
+    [0, 9, 8, 0, 0, 0, 0, 6, 0],
+    [8, 0, 0, 0, 6, 0, 0, 0, 3],
+    [4, 0, 0, 8, 0, 3, 0, 0, 1],
+    [7, 0, 0, 0, 2, 0, 0, 0, 6],
+    [0, 6, 0, 0, 0, 0, 2, 8, 0],
+    [0, 0, 0, 4, 1, 9, 0, 0, 5],
+    [0, 0, 0, 0, 8, 0, 0, 7, 9]
+];
+
+console.log(sudoku(puzzle));
